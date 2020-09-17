@@ -1,0 +1,1 @@
+// "start": "concurrently \"node scripts/start.js\" \"node server/index.js\"",
