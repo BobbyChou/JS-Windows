@@ -1,0 +1,1 @@
+{"version":3,"sources":["Pages/Home.tsx"],"names":["Home"],"mappings":"iIAAA,2BAQeA,UANuB,WAClC,OACI","file":"static/js/5.59afb0cf.chunk.js","sourcesContent":["import React from 'react'\n\nconst Home: React.FunctionComponent = () => {\n    return (\n        <div>niwdnwaidwai</div>\n    )\n}\n\nexport default Home"],"sourceRoot":""}

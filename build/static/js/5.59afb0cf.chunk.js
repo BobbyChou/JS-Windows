@@ -1,0 +1,2 @@
+(this["webpackJsonpmy-react-typescript"]=this["webpackJsonpmy-react-typescript"]||[]).push([[5],{34:function(t,e,n){"use strict";n.r(e);var i=n(0),a=n.n(i);e.default=function(){return a.a.createElement("div",null,"niwdnwaidwai")}}}]);
+//# sourceMappingURL=5.59afb0cf.chunk.js.map

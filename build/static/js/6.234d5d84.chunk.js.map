@@ -1,0 +1,1 @@
+{"version":3,"sources":["Pages/Mine.tsx"],"names":["Mine"],"mappings":"iIAAA,2BAQeA,UANuB,WAClC,OACI","file":"static/js/6.234d5d84.chunk.js","sourcesContent":["import React from 'react'\n\nconst Mine: React.FunctionComponent = () => {\n    return (\n        <div>mine init</div>\n    )\n}\n\nexport default Mine"],"sourceRoot":""}
