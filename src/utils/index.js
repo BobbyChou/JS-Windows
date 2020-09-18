@@ -1,7 +1,7 @@
 /*
  * @Author: zhou teng
  * @Date: 2020-09-17 18:07:56
- * @LastEditTime: 2020-09-18 10:34:47
+ * @LastEditTime: 2020-09-18 15:34:33
  */
 import TextMenu from '../Components/TextMenu'
 
@@ -28,4 +28,8 @@ export const getMouseLocation = (location) => {
 export const deleteTextMenu = () => {
   let _root = document.getElementsByClassName('textmenu-container')[0]
   _root.style.display = 'none'
+}
+
+export const editWidth = (el) => {
+  console.log(el)
 }

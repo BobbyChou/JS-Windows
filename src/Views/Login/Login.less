@@ -7,9 +7,22 @@
     display       : flex;
     flex-direction: column;
     align-items   : center;
+    box-sizing    : border-box;
 
     .login-avatart {
-        margin-bottom: 25px;
+        margin-bottom: 8px;
+
+        >img {
+            width : 100px;
+            height: 100px;
+        }
+    }
+
+    .username-container {
+        font-size    : 16px;
+        color        : #fff;
+        font-family  : "Microsoft YaHei";
+        margin-bottom: 10px;
     }
 
     .userpassword {
@@ -38,6 +51,21 @@
             top      : 50%;
             right    : 8px;
             transform: translateY(-50%);
+        }
+    }
+
+    .change-container {
+        position        : absolute;
+        bottom          : 23px;
+        left            : 23px;
+        padding         : 8px;
+        background-color: #ddd;
+        border-radius   : 50%;
+        cursor          : pointer;
+
+        >img {
+            width : 20px;
+            height: 20px;
         }
     }
 }

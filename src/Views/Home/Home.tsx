@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Home.less'
 import { getMouseLocation, deleteTextMenu } from './../../utils'
 
 const Home: React.FC = () => {
+
+  const [currentItem, setCurrentItem] = useState<any>('')
+  let appClickFlag: boolean = false, appClickTimer = null
 
   window.onload = () => {
     document.oncontextmenu = function (evt) {
@@ -25,20 +28,28 @@ const Home: React.FC = () => {
     }
   }
 
+  const _handleChangeSelectItem = (index: number) => {
+    setCurrentItem(index)
+
+    // 判断当前是单机还是双击
+    
+  }
+
   const DeskMenu: Array<{
     icon: any,
     name: string
   }> = [
       { icon: require('../../img/PCImg/icon_pc.png'), name: '我的电脑' },
       { icon: require('../../img/PCImg/icon_rubbish.png'), name: '回收站' },
-      { icon: require('../../img/PCImg/icon_control.png'), name: '控制面板' }
+      { icon: require('../../img/PCImg/icon_control.png'), name: '控制面板' },
+      { icon: require('../../img/PCImg/icon_browser.png'), name: '浏览器' }
     ]
 
   return (
     <div className="home-container">
       {DeskMenu.map((item, index) => {
         return (
-          <div className="addlist-item" key={`${item}${index}`}>
+          <div className={index === currentItem ? "addlist-item hover" : "addlist-item"} onClick={() => { _handleChangeSelectItem(index) }} key={`${item}${index}`}>
             <img src={item.icon} alt="" />
             <div className="addlist-item-font">{item.name}</div>
           </div>
