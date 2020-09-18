@@ -1,10 +1,19 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 # react-hook-typescript
 =======
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+=======
+<!--
+ * @Author: zhou teng
+ * @Date: 2020-09-17 18:07:56
+ * @LastEditTime: 2020-09-18 13:51:40
+-->
+>>>>>>> Stashed changes
 
-## Available Scripts
+### Absolute Path
 
+<<<<<<< Updated upstream
 In the project directory, you can run:
 
 ### `npm start`
@@ -46,3 +55,8 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 >>>>>>> first commit
+=======
+- imageCommon(src/img)
+- componentCommon(src/Components)
+- pageCommon(src/Views)
+>>>>>>> Stashed changes

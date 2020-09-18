@@ -1,1 +1,0 @@
-{"version":3,"sources":["Pages/Group.tsx"],"names":["Group"],"mappings":"iIAAA,2BAQeA,UANwB,WACnC,OACI","file":"static/js/3.a7e956fa.chunk.js","sourcesContent":["import React from 'react'\n\nconst Group: React.FunctionComponent = () => {\n    return (\n        <div>group init</div>\n    )\n}\n\nexport default Group"],"sourceRoot":""}

@@ -1,1 +1,0 @@
-{"version":3,"sources":["Pages/History.tsx"],"names":["History"],"mappings":"iIAAA,2BAQeA,UAN0B,WACrC,OACI","file":"static/js/4.96e992f6.chunk.js","sourcesContent":["import React from 'react'\n\nconst History: React.FunctionComponent = () => {\n    return (\n        <div>history init</div>\n    )\n}\n\nexport default History"],"sourceRoot":""}

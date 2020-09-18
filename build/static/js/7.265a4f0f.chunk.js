@@ -1,2 +1,0 @@
-(this["webpackJsonpmy-react-typescript"]=this["webpackJsonpmy-react-typescript"]||[]).push([[7],{37:function(t,e,n){"use strict";n.r(e);var c=n(0),i=n.n(c);e.default=function(){return i.a.createElement("div",null,"shop init")}}}]);
-//# sourceMappingURL=7.265a4f0f.chunk.js.map

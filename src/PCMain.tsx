@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.less'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import TextMenu from './Components/TextMenu'
 
 import Login from './Views/Login/Login'
 import Home from './Views/Home/Home'
@@ -24,6 +25,7 @@ const PCMain: React.FC = () => {
         }}></Route>
       </Switch>
     </BrowserRouter>
+    <TextMenu />
   </div>
 }
 

@@ -1,1 +1,0 @@
-{"version":3,"sources":["Pages/Shop.tsx"],"names":["Shop"],"mappings":"iIAAA,2BAQeA,UANuB,WAClC,OACI","file":"static/js/7.265a4f0f.chunk.js","sourcesContent":["import React from 'react'\n\nconst Shop: React.FunctionComponent = () => {\n    return (\n        <div>shop init</div>\n    )\n}\n\nexport default Shop"],"sourceRoot":""}
