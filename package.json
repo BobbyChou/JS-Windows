@@ -1,9 +1,10 @@
 {
   "name": "my-react-typescript",
-  "homepage": ".",
+  "homepage": "./",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ws": "1.1.1",
     "@babel/core": "7.9.0",
     "@svgr/webpack": "4.3.3",
     "@testing-library/jest-dom": "^4.2.4",

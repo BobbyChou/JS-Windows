@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Home.less'
 import { getMouseLocation, deleteTextMenu } from './../../utils'
+import Toast from '../../Components/Toast'
 
 const Home: React.FC = () => {
 
@@ -28,11 +29,17 @@ const Home: React.FC = () => {
     }
   }
 
+  var ws = new WebSocket('ws://localhost:9898/test');
+  // 响应onmessage事件:
+  // ws.onmessage = function (msg) { console.log(msg); };
+  // 给服务器发送一个字符串:
+  // ws.send('Hello!');
+
   const _handleChangeSelectItem = (index: number) => {
     setCurrentItem(index)
 
     // 判断当前是单机还是双击
-    
+
   }
 
   const DeskMenu: Array<{
@@ -55,6 +62,7 @@ const Home: React.FC = () => {
           </div>
         )
       })}
+      <Toast />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.less'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 import TextMenu from './Components/TextMenu'
 
 import Login from './Views/Login/Login'
@@ -16,7 +16,7 @@ const PCMain: React.FC = () => {
 
   const handleRenderRoutes = () => {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <Switch>
           <Route exact path="/" component={() => {
             return handleRenderRedirect('/home', 'login')
@@ -28,7 +28,7 @@ const PCMain: React.FC = () => {
             return _localstorage ? <Home /> : handleRenderRedirect('/home', 'login')
           }}></Route>
         </Switch>
-      </BrowserRouter >
+      </HashRouter >
     )
   }
 
