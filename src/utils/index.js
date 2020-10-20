@@ -1,11 +1,15 @@
 /*
  * @Author: zhou teng
  * @Date: 2020-09-17 18:07:56
- * @LastEditTime: 2020-09-18 15:34:33
+ * @LastEditTime: 2020-10-15 10:22:18
  */
-import TextMenu from '../Components/TextMenu'
 
-export const IsPC = () => {
+/**
+ * 判断当前的设备是PC端还是手机端
+ */
+export const PUBLIC_KEY = 'zhouteng5201314'
+
+export const Device = (function () {
   var userAgentInfo = navigator.userAgent;
   var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
   var flag = true;
@@ -15,7 +19,15 @@ export const IsPC = () => {
       break;
     }
   }
-  return flag;
+  return flag ? 'PC' : 'phone';
+})()
+
+/**
+ * 模拟账号-判断当前登录密码是否正确
+ * @param {account, pwd}  
+ */
+export const checkPwd = (pwd) => {
+
 }
 
 export const getMouseLocation = (location) => {

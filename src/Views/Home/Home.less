@@ -1,54 +1,112 @@
-.home-container {
-    height         : 100%;
-    display        : flex;
-    flex-direction : column;
-    padding        : 10px;
-    flex-wrap      : wrap;
-    justify-content: flex-start;
-    align-items    : flex-start;
-    box-sizing     : border-box;
+.home-box {
+    display       : flex;
+    height        : 100%;
+    flex-direction: column;
 
-    -moz-user-select   : none;
-    /*火狐*/
-    -webkit-user-select: none;
-    /*webkit浏览器*/
-    -ms-user-select    : none;
-    /*IE10*/
-    -khtml-user-select : none;
-    /*早期浏览器*/
-    user-select        : none;
+    &.none {
+        display: none;
+    }
 
-    .addlist-item {
-        width         : 50px;
-        margin-bottom : 20px;
-        display       : flex;
-        flex-direction: column;
-        align-items   : center;
-        border        : 1px solid transparent;
+    .home-container {
+        height         : 100%;
+        display        : flex;
+        flex-direction : column;
+        flex-wrap      : wrap;
+        justify-content: flex-start;
+        align-items    : flex-start;
+        box-sizing     : border-box;
+        flex           : 1;
+        position       : relative;
+        padding-bottom : 28px;
 
-        >img {
-            width        : 25px;
-            height       : 25px;
-            margin-top   : 5px;
-            margin-bottom: 8px;
+        -moz-user-select   : none;
+        /*火狐*/
+        -webkit-user-select: none;
+        /*webkit浏览器*/
+        -ms-user-select    : none;
+        /*IE10*/
+        -khtml-user-select : none;
+        /*早期浏览器*/
+        user-select        : none;
+
+        .addlist-item {
+            width         : 50px;
+            margin        : 10px 0 10px 10px;
+            display       : flex;
+            flex-direction: column;
+            align-items   : center;
+            border        : 1px solid transparent;
+
+            >img {
+                width        : 25px;
+                height       : 25px;
+                margin-top   : 5px;
+                margin-bottom: 8px;
+            }
         }
+
+        .addlist-item-font {
+            color         : #fff;
+            padding-bottom: 3px;
+        }
+
+        .addlist-item:hover {
+            background-color: rgba(0, 0, 0, .5);
+            border          : 1px dashed rgba(240, 240, 240, 0.3);
+            border-radius   : 2px;
+        }
+
+        .addlist-item.hover {
+            background-color: rgba(0, 0, 0, .2);
+            border          : 1px dashed rgba(240, 240, 240, 0.3);
+            border-radius   : 2px;
+        }
+
+
     }
 
-    .addlist-item-font {
-        color         : #fff;
-        padding-bottom: 3px;
-    }
+    .home-botton-container {
+        background     : rgba(0, 0, 0, .3);
+        position       : fixed;
+        bottom         : 0;
+        width          : 100%;
+        display        : flex;
+        flex-direction : row;
+        justify-content: flex-start;
+        align-items    : center;
 
-    .addlist-item:hover {
-        background-color: rgba(0, 0, 0, .5);
-        border          : 1px dashed rgba(240, 240, 240, 0.3);
-        border-radius   : 2px;
-    }
+        .home-botton-logo {
+            width       : 18px;
+            margin-right: 8px;
 
-    .addlist-item.hover {
-        background-color: rgba(0, 0, 0, .2);
-        border          : 1px dashed rgba(240, 240, 240, 0.3);
-        border-radius   : 2px;
+            >img {
+                width : 18px;
+                height: 18px;
+            }
+        }
+
+        .home-botton-apps {
+            width          : 22px;
+            height         : 22px;
+            flex           : 1;
+            display        : flex;
+            justify-content: flex-start;
+            align-items    : center;
+
+            .apps-item {
+                height         : 100%;
+                padding        : 0 5px;
+                background     : rgba(255, 255, 255, .1);
+                display        : flex;
+                justify-content: center;
+                align-items    : center;
+
+                >img {
+                    width : 18px;
+                    height: 18px;
+                }
+            }
+        }
     }
 }
 

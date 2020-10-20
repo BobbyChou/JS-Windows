@@ -1,49 +1,52 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import './Login.less'
-import { editWidth } from '../../utils'
+import Account from './../../utils/Account'
+import { message } from 'antd'
 
+interface Named {
+  name: string;
+}
 
 const Login: React.FC = () => {
 
-
-  const [userName, setUserName] = useState('Administrator')
+  const [userName] = useState('zhou da pao')
   const [userPassword, setUserPassword] = useState('')
   const userInput = useRef(null)
+  const userPwd = useRef(null)
   const userContent = useRef(null)
   const history = useHistory()
 
-  // 禁用鼠标右键，自己封装右键功能列表
-  window.onload = () => {
+  /** 登录跳转到首页 */
+  const _handleToHomePage = () => {
+    if (Account[userName as 'zhou teng'] === userPassword) {
+      localStorage.setItem('Account', userName)
+      return history.push('/home')
+    }
+    message.error('登录密码错误')
+    setUserPassword('')
+  }
+
+  useEffect(() => {
+    /** 禁用鼠标右键，自己封装右键功能列表 */
     document.oncontextmenu = function (evt) {
       evt.returnValue = false;
     };
-  }
 
-  // document.onkeydown = function (e) {
-  //   if (e.keyCode === 13 && userName) {
-  //     window.localStorage.setItem('token', userName)
-  //     history.push('home')
-  //   }
-  // }
+    /** 点击回车键登录 */
+    document.onkeydown = function (e) {
+      if (e.keyCode === 13 && userName) {
+        _handleToHomePage()
+      }
+    }
+  })
 
+  /** 修改输入框 */
   const _handleChangeInput = (e: any) => {
-    let _reg = new RegExp('^[A-Za-z0-9]+$')
-    _reg.test(e.target.value) && setUserName(e.target.value)
+    setUserPassword(e.currentTarget.value)
   }
 
-  const _handleShowAllUser = () => {
-    editWidth(userContent.current)
-  }
 
-  const _handleLogin = () => {
-    fetch('http://localhost:9002/login', {
-      mode: "no-cors",
-      method: 'get'
-    }).then((res) => {
-      console.log(res)
-    })
-  }
 
   return (
     <div className="login-container">
@@ -52,10 +55,10 @@ const Login: React.FC = () => {
       </div>
       <div className="username-container">{userName}</div>
       <div className="login-userinput">
-        <input ref={userInput} type="password" className="userpassword" />
-        <img onClick={() => { _handleLogin() }} className="login-toright" src={require('./../../img/PCImg/icon_toright.png')} alt="" />
+        <input value={userPassword} ref={userInput} onChange={(e) => { _handleChangeInput(e) }} type="password" className="userpassword" />
+        <img ref={userPwd} onClick={_handleToHomePage} className="login-toright" src={require('./../../img/PCImg/icon_toright.png')} alt="" />
       </div>
-      <div ref={userContent} className="change-container" onClick={() => { _handleShowAllUser() }}>
+      <div ref={userContent} className="change-container">
         <img src={require('imageCommon/PCImg/icon_changeAccount.png')} alt="" />
       </div>
     </div>
