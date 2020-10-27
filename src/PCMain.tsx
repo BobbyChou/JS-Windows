@@ -1,7 +1,6 @@
 import React from 'react'
 import './App.less'
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
-import TextMenu from './Components/TextMenu'
 import Login from './Views/Login/Login'
 import Home from './Views/Home/Home'
 
@@ -24,7 +23,6 @@ const PCMain: React.FC = () => {
 
   return <div className="app-pc">
     {handleRenderRoutes()}
-    <TextMenu />
   </div>
 }
 

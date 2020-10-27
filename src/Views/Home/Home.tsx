@@ -1,31 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import './Home.less'
 import { getMouseLocation, deleteTextMenu } from './../../utils'
-import Toast from '../../Components/Toast'
-import Item from 'antd/lib/list/Item'
+import AppDocker from '../../Components/AppDocker'
 
 interface DeskMenu {
   icon: any,
   title: string
 }
-
+interface appItem {
+  icon: any,
+  title: string,
+  show: boolean
+}
 let timer: any = null
 
 const Home: React.FC = () => {
-
+  /** 电脑桌面图标列表 */
   const DeskMenu: Array<DeskMenu> = [
     { icon: 'icon_pc', title: '我的电脑' },
     { icon: 'icon_rubbish', title: '回收站' },
     { icon: 'icon_control', title: '控制面板' },
-    { icon: 'icon_browser', title: '浏览器' }
+    { icon: 'icon_browser', title: '浏览器' },
+    { icon: 'icon_vue', title: 'vue' },
+    { icon: 'icon_react', title: 'react' }
   ]
   const [currentItem, setCurrentItem] = useState<string>('')
   const [currentItemIdx, setCurrentItemIdx] = useState<any>(null)
-  const [showToast, setShowToast] = useState<boolean>(false)
-  const [bottomList, setBototmList] = useState<Array<{
-    title?: string,
-    icon: any
-  }>>([])
+  const [appDockerList, setAppDockerList] = useState<Array<appItem>>([])
+  const [bottomList, setBototmList] = useState<Array<DeskMenu>>([])
 
   useEffect(() => {
     // 鼠标右键事件
@@ -34,11 +36,6 @@ const Home: React.FC = () => {
       localStorage.setItem('showTextMenu', 'true')
       getMouseLocation(location)
       evt.returnValue = false;
-    };
-
-    // 鼠标拖拽事件
-    document.ondragstart = function (evt) {
-      evt.returnValue = false
     };
 
     // 点击事件
@@ -52,25 +49,15 @@ const Home: React.FC = () => {
     }
   }, [])
 
-  /**
-   * 判断当前点击item是单机还是双击
-   * @param item 当前的点击项
-   * @param index 当前点击的item的下标
-   */
+  /** 判断当前点击item是单机还是双击 */
   const _handleChangeSelectItem = (item: { title: string, icon: any }, index: number) => {
-    // 判断当前是单机还是双击
     setCurrentItemIdx(index)
-    if (currentItem) {
-      if (!bottomList.includes(item)) {
-        let _list = bottomList.slice(0)
-        _list.push({
-          title: item.title,
-          icon: item.icon
-        })
-        setBototmList(_list)
-      }
-      if (currentItem === '浏览器') {
-        setShowToast(true)
+    if (currentItem && item.title === 'vue') {
+      if (bottomList.filter((item) => { return item.title === currentItem }).length < 1) {
+        setAppDockerList([...appDockerList, { ...item, ...{ show: true } }])
+        setBototmList([...bottomList, item])
+      } else if (appDockerList.filter((item) => { return item.title === currentItem }).length < 1) {
+        setAppDockerList([...appDockerList, { ...item, ...{ show: true } }])
       }
       clearTimeout(timer)
       return setCurrentItem('')
@@ -81,18 +68,43 @@ const Home: React.FC = () => {
     }, 300);
   }
 
-  /** 修改show */
-  const toggleShow = (val: boolean) => {
-    setShowToast(val)
+  /** 点击显示桌面 */
+  const handleShowDeskstop = () => {
+    setAppDockerList([])
+  }
+
+  /** 最小化一项 */
+  const hiddenAppItem = (index: number, show: boolean) => {
+    let _appDockerList = appDockerList.slice(0)
+    _appDockerList.splice(index, 1)
+    setAppDockerList(_appDockerList)
   }
 
   /** 删除一项 */
-  const deleteAppItem = (item: { title: any, icon: any }) => {
-    console.log(item)
-    // let _list = bottomList.filter((appItem) => {
-    //   return appItem.title !== item.title
-    // })
-    // setBototmList(_list)
+  const deleteAppItem = (index: number) => {
+    let _appDockerList = appDockerList.slice(0)
+    let _bottomList = bottomList.slice(0)
+    _appDockerList.splice(index, 1)
+    _bottomList.splice(index, 1)
+    setAppDockerList(_appDockerList)
+    setBototmList(_bottomList)
+  }
+
+  /** 显示隐藏 */
+  const toggleShow = (data: any) => {
+    let flag = true, _index = 0
+    for (let i = 0; i < appDockerList.length; i++) {
+      if (appDockerList[i].title === data.title) {
+        flag = false
+        _index = i
+      }
+    }
+    if (flag) {
+      return setAppDockerList([...appDockerList, { ...data, ...{ show: true } }])
+    }
+    let _appDockerList = appDockerList.slice(0)
+    _appDockerList.splice(_index, 1)
+    setAppDockerList(_appDockerList)
   }
 
   return (
@@ -106,24 +118,28 @@ const Home: React.FC = () => {
             </div>
           )
         })}
-        <Toast deleteAppItem={deleteAppItem} toggleShow={toggleShow} show={showToast} />
+        <AppDocker
+          appDockerList={appDockerList}
+          deleteAppItem={deleteAppItem}
+          hiddenAppItem={hiddenAppItem}
+        />
       </div>
       <div className="home-botton-container">
         <div className="home-botton-logo">
           <img src={require('../../img/PCImg/icon_windows.png')} alt="" />
         </div>
         <div className="home-botton-apps">
-          {bottomList.map((item) => {
+          {bottomList.map((item, index) => {
             return (
-              <div className="apps-item">
+              <div className="apps-item" key={index} onClick={() => { toggleShow(item) }}>
                 <img src={require(`../../img/PCImg/${item.icon}.png`)} alt="" />
               </div>
             )
           })}
         </div>
+        <div className="show-deskstop" onClick={handleShowDeskstop}></div>
       </div>
     </div>
-
   )
 }
 

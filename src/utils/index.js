@@ -1,7 +1,7 @@
 /*
  * @Author: zhou teng
  * @Date: 2020-09-17 18:07:56
- * @LastEditTime: 2020-10-15 10:22:18
+ * @LastEditTime: 2020-10-26 16:51:34
  */
 
 /**
@@ -9,6 +9,7 @@
  */
 export const PUBLIC_KEY = 'zhouteng5201314'
 
+/** 判断当前设备 */
 export const Device = (function () {
   var userAgentInfo = navigator.userAgent;
   var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
@@ -22,26 +23,48 @@ export const Device = (function () {
   return flag ? 'PC' : 'phone';
 })()
 
-/**
- * 模拟账号-判断当前登录密码是否正确
- * @param {account, pwd}  
- */
-export const checkPwd = (pwd) => {
-
-}
-
+/** 鼠标右键菜单事件 */
 export const getMouseLocation = (location) => {
-  let _root = document.getElementsByClassName('textmenu-container')[0]
-  _root.style.display = 'block'
-  _root.style.left = location[0] + 'px'
-  _root.style.top = location[1] + 'px'
+  console.log(111)
+  if (document.getElementsByClassName('textmenu-container')[0]) {
+    document.getElementsByClassName('textmenu-container')[0].style.left = location[0] + 'px'
+    document.getElementsByClassName('textmenu-container')[0].style.top = location[1] + 'px'
+  } else {
+    let _addEl = document.createElement('div')
+    _addEl.setAttribute('class', 'textmenu-container')
+    _addEl.innerHTML = `
+    <ul class="menu-list">
+      <li class='menu-item-checkout'>查看</li>
+      <li class='menu-item-liststyle'>排序方式</li>
+      <li class='menu-item-refresh'>刷新</li>
+      <li class='menu-item-create'>新建</li>
+      <li class='menu-item-style'>个性化</li>
+    </ul>
+    `
+    _addEl.addEventListener('click', function (e) {
+      let _deleteEl = document.getElementsByClassName('textmenu-container')[0]
+      document.getElementsByClassName('app-pc')[0].removeChild(_deleteEl)
+      switch (e.target.getAttribute('class')) {
+        case 'menu-item-refresh':
+          let el = document.getElementsByClassName('home-container')[0]
+          el.setAttribute('class', 'home-container none')
+          setTimeout(() => {
+            el.setAttribute('class', 'home-container')
+          }, 180);
+          break;
+        default:
+          break;
+      }
+    })
+    _addEl.style.display = 'block'
+    _addEl.style.left = location[0] + 'px'
+    _addEl.style.top = location[1] + 'px'
+    document.getElementsByClassName('app-pc')[0].appendChild(_addEl)
+  }
 }
 
 export const deleteTextMenu = () => {
-  let _root = document.getElementsByClassName('textmenu-container')[0]
-  _root.style.display = 'none'
-}
-
-export const editWidth = (el) => {
-  console.log(el)
+  let _deleteEl = document.getElementsByClassName('textmenu-container')[0]
+  let _root = document.getElementsByClassName('app-pc')[0]
+  _root && _deleteEl && _root.removeChild(_deleteEl)
 }
