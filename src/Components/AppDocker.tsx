@@ -60,7 +60,7 @@ const Toast: React.FC<props> = (props: props) => {
   return <div className="toast-container">
     {props.appDockerList && props.appDockerList.map((item, index) => {
       return (
-        item.show ? <div key={`${index}`} onDragStartCapture={(e) => { console.log(e.target) }} className={getElementClassName()} ref={box}>
+        item.show ? <div key={`${index}`} onDragStartCapture={(e) => { console.log(e.target) }} style={{ top: 120 - 20 * index + 'px', left: 120 - 20 * index + 'px' }} className={getElementClassName()} ref={box}>
           <div className='browser-title-container' onClick={() => { changeBrowserSize() }}>
             <div className="icon-contianer">
               <span onClick={() => { props.hiddenAppItem(index, !item.show) }}>{'一'}</span>
@@ -68,7 +68,8 @@ const Toast: React.FC<props> = (props: props) => {
               <span onClick={() => { props.deleteAppItem(index) }}>{'X'}</span>
             </div>
           </div>
-          <iframe title='1' src="http://localhost:3000/" className="iframe-container"></iframe>
+          {/* <iframe title='1' src="http://47.101.171.221/xrc/" className="iframe-container"></iframe> */}
+          <iframe title='1' src="http://localhost:9002" className="iframe-container"></iframe>
         </div> : null
       )
     })}

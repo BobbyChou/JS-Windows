@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Home.less'
 import { getMouseLocation, deleteTextMenu } from './../../utils'
 import AppDocker from '../../Components/AppDocker'
+import { message } from 'antd'
 
 interface DeskMenu {
   icon: any,
@@ -47,18 +48,17 @@ const Home: React.FC = () => {
         deleteTextMenu()
       }
     }
-  }, [])
+  }, [appDockerList])
 
   /** 判断当前点击item是单机还是双击 */
   const _handleChangeSelectItem = (item: { title: string, icon: any }, index: number) => {
     setCurrentItemIdx(index)
-    if (currentItem && item.title === 'vue') {
+    if (currentItem) {
+      if (item.title !== 'vue') { return message.error('功能尚未开发，请联系周腾') }
       if (bottomList.filter((item) => { return item.title === currentItem }).length < 1) {
-        setAppDockerList([...appDockerList, { ...item, ...{ show: true } }])
         setBototmList([...bottomList, item])
-      } else if (appDockerList.filter((item) => { return item.title === currentItem }).length < 1) {
-        setAppDockerList([...appDockerList, { ...item, ...{ show: true } }])
       }
+      setAppDockerList([...appDockerList, { ...item, ...{ show: true } }])
       clearTimeout(timer)
       return setCurrentItem('')
     }
