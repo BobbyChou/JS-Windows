@@ -1,5 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
-import './AppDocker.less'
+import React, { useRef, useState } from 'react'
 
 interface appItem {
   icon: any,
@@ -20,15 +19,6 @@ const Toast: React.FC<props> = (props: props) => {
 
   const box: React.RefObject<HTMLInputElement> = useRef(null)
   const [browserSize, setBrowserSize] = useState('normal')
-
-  useEffect(() => {
-    let els: any = document.getElementsByClassName('browser-title-container')
-    for (let item of els) {
-      item.ondragstart = (e: any) => {
-        console.log(11111)
-      }
-    }
-  }, [props.appDockerList])
 
   const changeBrowserSize = () => {
     clearTimeout(doubleClickTimer)
