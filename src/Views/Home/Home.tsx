@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Home.less'
-import { getMouseLocation, deleteTextMenu } from './../../utils'
+import { getMouseLocation, deleteTextMenu } from './../../utils/index'
 import AppDocker from '../../Components/AppDocker'
 import { message } from 'antd'
 

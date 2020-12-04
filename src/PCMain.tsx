@@ -5,6 +5,7 @@ import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Login from './Views/Login/Login'
 import Home from './Views/Home/Home'
 import Mine from './Views/Mine/Mine'
+import UI from './Views/UI/UI'
 
 const PCMain: React.FC = () => {
   const handleRenderRedirect = (path: string) => {
@@ -19,6 +20,7 @@ const PCMain: React.FC = () => {
           <Route path={'/login'} component={Login}></Route>
           <Route path={'/home'} component={() => { return localStorage.getItem('Account') ? <Home /> : handleRenderRedirect('home') }}></Route>
           <Route path={'/mine'} component={() => { return localStorage.getItem('Account') ? <Mine /> : handleRenderRedirect('mine') }}></Route>
+          <Route path={'/ui'} component={() => { return localStorage.getItem('Account') ? <UI /> : handleRenderRedirect('ui') }}></Route>
         </Switch>
       </HashRouter>
     )

@@ -41,7 +41,7 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 }
 
 // Tools like Cloud9 rely on this.
-const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 9001;
+const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3101;
 const HOST = process.env.HOST || '0.0.0.0';
 
 if (process.env.HOST) {
@@ -63,7 +63,9 @@ if (process.env.HOST) {
 
 // We require that you explicitly set browsers and do not fall back to
 // browserslist defaults.
-const { checkBrowsers } = require('react-dev-utils/browsersHelper');
+const {
+  checkBrowsers
+} = require('react-dev-utils/browsersHelper');
 checkBrowsers(paths.appPath, isInteractive)
   .then(() => {
     // We attempt to use the default port but if it is busy, we offer the user to
@@ -142,8 +144,8 @@ checkBrowsers(paths.appPath, isInteractive)
       openBrowser(urls.localUrlForBrowser);
     });
 
-    ['SIGINT', 'SIGTERM'].forEach(function(sig) {
-      process.on(sig, function() {
+    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+      process.on(sig, function () {
         devServer.close();
         process.exit();
       });
@@ -151,7 +153,7 @@ checkBrowsers(paths.appPath, isInteractive)
 
     if (isInteractive || process.env.CI !== 'true') {
       // Gracefully exit when stdin ends
-      process.stdin.on('end', function() {
+      process.stdin.on('end', function () {
         devServer.close();
         process.exit();
       });
